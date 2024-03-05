@@ -1,4 +1,5 @@
-import whisper, os
+import os
+import whisper
 from whisper.utils import get_writer
 
 class Transcriber:
@@ -14,7 +15,8 @@ class Transcriber:
                                          audio=self.audio_filepath, 
                                          language="fi", 
                                          task="translate" if translate else "transcribe", 
-                                         fp16=False)
+                                         fp16=False,
+                                         verbose=None)
         callback(self.result)
     
     def save_srt(self):

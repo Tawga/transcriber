@@ -1,5 +1,4 @@
-from customtkinter import *
-from customtkinter import filedialog
+from customtkinter import filedialog, CTkButton, CTkLabel, CTkFrame, CTk, CTkComboBox, CTkCheckBox
 from transcriber import Transcriber
 import threading
 
@@ -57,11 +56,12 @@ class Ui:
         self.filepath_label.configure(text=self.audio_file_path)
     
     def save_srt(self):
+        self.srt_button.configure(state="disabled", text='Saved')
         self.transcriber.save_srt()
     
     def transcribe_finished(self, result):
         self.trans_button.configure(state="normal", text="Transcribe audio")
-        self.srt_button.configure(state="normal")
+        self.srt_button.configure(state="normal", text="Save as SRT")
         self.translation_frame.pack(expand=True, fill="both", padx= 10, pady=10)
         self.translation_label.configure(text=result["text"])
         
